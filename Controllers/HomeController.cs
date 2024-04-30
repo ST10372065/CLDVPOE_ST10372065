@@ -13,8 +13,14 @@ namespace ST10372065.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int userID)
         {
+            // Retrieve all products from the database
+            List<productTable> products = productTable.GetAllProducts();
+
+            // Pass products and userID to the view
+            ViewData["Products"] = products;
+            ViewData["UserID"] = userID;
             return View();
         }
 

@@ -1,5 +1,9 @@
-﻿@{
+﻿@model int
+
+@{
     ViewData["Title"] = "Home Page";
+    var userID = ViewData["userID"];
+    var products = ViewData["Products"] as List<ST10372065.Models.productTable>;
 }
 
 <head>
@@ -39,4 +43,40 @@
         We invite you to join us on this journey as we strive to make a positive impact on the lives of artisans, preserve cultural heritage, and bring the beauty of handmade craftsmanship
         to homes around the world.
     </p>
+
+    @if (userID != null)
+    {
+        <p>User ID: @userID</p>
+    }
+
+    <h2>All Products</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Availability</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Category</td>
+                    <td>@product.Availability</td>
+                    <td>
+                        <form asp-controller="Transaction" asp-action="PlaceOrder" method="post">
+                            <input type="hidden" name="userID" value="@userID" />
+                            <input type="hidden" name="productID" value="@product.ProductID" />
+                            <button type="submit">Place Order</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+
 </body>
