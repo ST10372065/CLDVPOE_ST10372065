@@ -20,17 +20,17 @@ namespace ST10372065.Models
 
 
 
-        public int insert_product(productTable p)
+        public int insert_product(productTable product)
         {
 
             try
             {
                 string sql = "INSERT INTO productTable (productName, productPrice, productCategory, productAvailability) VALUES (@Name, @Price, @Category, @Availability)";
                 SqlCommand cmd = new SqlCommand(sql, con);
-                cmd.Parameters.AddWithValue("@Name", p.Name);
-                cmd.Parameters.AddWithValue("@Price", p.Price);
-                cmd.Parameters.AddWithValue("@Category", p.Category);
-                cmd.Parameters.AddWithValue("@Availability", p.Availability);
+                cmd.Parameters.AddWithValue("@Name", product.Name);
+                cmd.Parameters.AddWithValue("@Price", product.Price);
+                cmd.Parameters.AddWithValue("@Category", product.Category);
+                cmd.Parameters.AddWithValue("@Availability", product.Availability);
                 con.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
                 con.Close();
@@ -42,10 +42,7 @@ namespace ST10372065.Models
                 // For now, rethrow the exception
                 throw ex;
             }
-
-
         }
-
 
         // Method to retrieve all products from the database
         public static List<productTable> GetAllProducts()
@@ -71,7 +68,6 @@ namespace ST10372065.Models
                     products.Add(product);
                 }
             }
-
             return products;
         }
     }
