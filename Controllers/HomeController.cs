@@ -39,6 +39,11 @@ namespace ST10372065.Controllers
             return View();
         }
 
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+
         public IActionResult Login()
         {
             return View();

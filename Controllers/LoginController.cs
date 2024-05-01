@@ -13,10 +13,10 @@ namespace ST10372065.Controllers
         }
 
         [HttpPost]
-        public ActionResult Privacy(string email, string name)
+        public ActionResult Privacy(string email, string password)
         {
             var loginModel = new LoginModel();
-            int userID = loginModel.SelectUser(email, name);
+            int userID = loginModel.SelectUser(email, password);
             if (userID != -1)
             {
                 // User found, proceed with login logic (e.g., set authentication cookie)

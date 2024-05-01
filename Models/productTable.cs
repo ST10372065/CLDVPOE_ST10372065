@@ -14,22 +14,17 @@ namespace ST10372065.Models
 
         public string Price { get; set; }
 
-        public string Category { get; set; }
-
         public string Availability { get; set; }
-
-
 
         public int insert_product(productTable product)
         {
 
             try
             {
-                string sql = "INSERT INTO productTable (productName, productPrice, productCategory, productAvailability) VALUES (@Name, @Price, @Category, @Availability)";
+                string sql = "INSERT INTO productTable (productName, productPrice, productAvailability) VALUES (@Name, @Price, @Availability)";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@Name", product.Name);
                 cmd.Parameters.AddWithValue("@Price", product.Price);
-                cmd.Parameters.AddWithValue("@Category", product.Category);
                 cmd.Parameters.AddWithValue("@Availability", product.Availability);
                 con.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -62,7 +57,6 @@ namespace ST10372065.Models
                     product.ProductID = Convert.ToInt32(rdr["productID"]);
                     product.Name = rdr["productName"].ToString();
                     product.Price = rdr["productPrice"].ToString();
-                    product.Category = rdr["productCategory"].ToString();
                     product.Availability = rdr["productAvailability"].ToString();
 
                     products.Add(product);

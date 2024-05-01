@@ -15,17 +15,20 @@ namespace ST10372065.Models
 
         public string Email { get; set; }
 
+        public string Password { get; set; }
+
 
         public int insert_User(userTable m)
         {
 
             try
             {
-                string sql = "INSERT INTO userTable (userName, userSurname, userEmail) VALUES (@Name, @Surname, @Email)";
+                string sql = "INSERT INTO userTable (userName, userSurname, userEmail, userPassword) VALUES (@Name, @Surname, @Email, @Password)";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.Parameters.AddWithValue("@Name", m.Name);
                 cmd.Parameters.AddWithValue("@Surname", m.Surname);
                 cmd.Parameters.AddWithValue("@Email", m.Email);
+                cmd.Parameters.AddWithValue("@Password", m.Password);
                 con.Open();
                 int rowsAffected = cmd.ExecuteNonQuery();
                 con.Close();

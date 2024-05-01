@@ -1,12 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Sign Up";
 }
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Sign Up Page</title>
     <style>
         /* Basic styling for demonstration */
         body {
@@ -19,12 +18,13 @@
         }
 
         .form-group {
-            display: flex;
-            flex-direction: column; /* Change to column direction */
+            margin-bottom: 10px;
         }
 
             .form-group input[type="text"],
-            .form-group input[type="password"] {
+            .form-group input[type="password"],
+            .form-group input[type="email"],
+            .form-group input[type="submit"] {
                 width: calc(100% - 20px); /* Adjust width as needed */
                 margin-bottom: 10px; /* Add space between inputs */
                 padding: 10px;
@@ -33,28 +33,26 @@
 
             .form-group input[type="submit"] {
                 width: calc(100% - 20px); /* Adjust width as needed */
-                margin-bottom: 10px; /* Add space between inputs */
                 padding: 10px;
                 box-sizing: border-box;
             }
-
-        .signup-button {
-            width: calc(100% - 20px); /* Adjust width as needed */
-            margin-bottom: 10px; /* Add space between inputs */
-            padding: 10px;
-            box-sizing: border-box;
-        }
     </style>
 </head>
 <body>
 
-    <form action="/Account/Login" method="post">
-        <h2>Login</h2>
+    <form action="/Account/Register" method="post">
+        <h2>Sign Up</h2>
         <div class="form-group">
-            <input type="text" name="Name" placeholder="Name" required>
+            <input type="text" name="Name" placeholder="Name`" required>
+        </div>
+        <div class="form-group">
             <input type="password" name="password" placeholder="Password" required>
-            <input type="submit" value="Login" class="btn btn-primary">
-            <a class="btn btn-primary signup-button" href="/Home/SignUp">Sign Up</a>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Sign Up">
         </div>
     </form>
 
