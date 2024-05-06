@@ -11,11 +11,11 @@ namespace ST10372065.Models
 
         public string Name { get; set; }
 
-        public string Surname { get; set; }
+        public  string Surname { get; set; }
 
-        public string Email { get; set; }
+        public  string Email { get; set; }
 
-        public string Password { get; set; }
+        public  string Password { get; set; }
 
 
         public int insert_User(userTable m)
@@ -40,7 +40,6 @@ namespace ST10372065.Models
                 // For now, rethrow the exception
                 throw ex;
             }
-
 
         }
 

@@ -13,7 +13,7 @@ namespace ST10372065.Controllers
         }
 
         [HttpPost]
-        public ActionResult Privacy(string email, string password)
+        public ActionResult Login(string email, string password)
         {
             var loginModel = new LoginModel();
             int userID = loginModel.SelectUser(email, password);
@@ -21,7 +21,7 @@ namespace ST10372065.Controllers
             {
                 // User found, proceed with login logic (e.g., set authentication cookie)
                 // For demonstration, redirecting to a dummy page
-                return RedirectToAction("Index", "Home", new { userID = userID });
+                return RedirectToAction("MyWork", "Home", new { userID = userID });
             }
             else
             {

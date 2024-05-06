@@ -18,5 +18,17 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    padding: 0;
+    background-image: url('../Images/KCLogo.png');
+    background-repeat: repeat-y;
+    background-position: left top; /* Adjust the position as needed */
 }
+
+footer {
+    background-color: aliceblue;
+    text-align: center;
+    height: 15px;
+    width: 100%;
+}
+
