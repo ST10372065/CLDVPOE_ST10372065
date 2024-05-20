@@ -1,5 +1,7 @@
-﻿@{
+﻿@model int
+@{
     ViewData["Title"] = "MyWork";
+    var userID = ViewData["UserID"];
 }
 
 <head>
@@ -13,6 +15,10 @@
        Below are some of the select few products we have on hand ready to be delivered to your doorstep. Please note that all these products listed have been sourced locally from their 
        rescpective countries and that is why prices might be expensive. Many of these products can be considered exotic. You will find a picture of the product, its price and a short description
        on the item and its origin.
+    </p>
+
+    <p>
+        @userID
     </p>
 
     <div class="text-center">

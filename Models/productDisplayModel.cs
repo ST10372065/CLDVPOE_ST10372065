@@ -40,7 +40,6 @@ namespace ST10372065.Models
                     product.ProductID = Convert.ToInt32(reader["ProductID"]);
                     product.ProductName = Convert.ToString(reader["ProductName"]);
                     product.ProductPrice = Convert.ToDecimal(reader["ProductPrice"]);
-
                     product.ProductAvailability = Convert.ToBoolean(reader["ProductAvailability"]);
                     products.Add(product);
                 }
