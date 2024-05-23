@@ -52,6 +52,11 @@ namespace ST10372065.Controllers
         {
             return View();
         }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear(); // Clear the session
+            return RedirectToAction("Index"); // Redirect to the index page
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

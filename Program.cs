@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Options;
 
-namespace CloudDevelopment
+namespace ST10372065
 {
     public class Program
     {

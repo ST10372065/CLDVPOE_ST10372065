@@ -9,13 +9,13 @@ namespace ST10372065.Models
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }
-        public decimal ProductPrice { get; set; }
+        public double ProductPrice { get; set; }
         public bool ProductAvailability { get; set; }
 
         public productDisplayModel() { }
 
         //Parameterized Constructor: This constructor takes five parameters (id, name, price, availability) and initializes the corresponding properties of ProductDisplayModel with the provided values.
-        public productDisplayModel(int id, string name, decimal price, bool availability)
+        public productDisplayModel(int id, string name, double price, bool availability)
         {
             ProductID = id;
             ProductName = name;
@@ -39,7 +39,7 @@ namespace ST10372065.Models
                     productDisplayModel product = new productDisplayModel();
                     product.ProductID = Convert.ToInt32(reader["ProductID"]);
                     product.ProductName = Convert.ToString(reader["ProductName"]);
-                    product.ProductPrice = Convert.ToDecimal(reader["ProductPrice"]);
+                    product.ProductPrice = Convert.ToDouble(reader["ProductPrice"]);
                     product.ProductAvailability = Convert.ToBoolean(reader["ProductAvailability"]);
                     products.Add(product);
                 }

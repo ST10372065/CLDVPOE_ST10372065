@@ -10,6 +10,7 @@ namespace ST10372065.Controllers
         {
             var products = productDisplayModel.SelectProducts();
             return View(products);
+
         }
     }
 }

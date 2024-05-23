@@ -1,63 +1,103 @@
-﻿@model int
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
-    ViewData["Title"] = "MyWork";
-    var userID = ViewData["UserID"];
+    var userID = HttpContextAccessor.HttpContext.Session.GetString("UserID");
+    if (string.IsNullOrEmpty(userID))
+    {
+        <p>You need to log in to submit this form.</p>
+    }
+    else
+    {
+        <div class="form-container">
+            <form action="/Product/MyWork" method="post">
+                <h2>Insert new products</h2>
+                <div class="form-group">
+                    <input type="text" name="Name" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Price" placeholder="Price" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="Availability" placeholder="Availability" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    }
 }
 
+<html lang="en">
 <head>
-    <title>My Work - KhumaloCraft Emporium</title>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Work</title>
+    <style>
+        /* Basic styling for demonstration */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #fff; /* Change body background to white */
+        }
 
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 60px); /* Adjust as per the height of your navbar */
+        }
+
+        form {
+            background: #fff;
+            padding: 50px; /* Increase padding to make panel bigger */
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc; /* Add border to form */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Increase space between inputs */
+            width: 100%;
+        }
+
+            .form-group input[type="text"],
+            .form-group input[type="submit"] {
+                width: 100%; /* Adjust width as needed */
+                padding: 10px;
+                box-sizing: border-box;
+            }
+
+            .form-group input[type="submit"] {
+                width: 100%; /* Adjust width as needed */
+                padding: 10px;
+                box-sizing: border-box;
+            }
+    </style>
 </head>
 <body>
-    <h1>Product information</h1>
-    <p>
-       Below are some of the select few products we have on hand ready to be delivered to your doorstep. Please note that all these products listed have been sourced locally from their 
-       rescpective countries and that is why prices might be expensive. Many of these products can be considered exotic. You will find a picture of the product, its price and a short description
-       on the item and its origin.
-    </p>
 
-    <p>
-        @userID
-    </p>
+    <!-- Your navbar goes here -->
 
-    <div class="text-center">
-        <img src="~/Images/KhumaloCraftImg1.jpg" alt="" />
-        <h3>Hand woven bowls and vase</h3>
-        <b><p>Price: R1999.99</p></b></>
-        <p>
-            With this hand woven set is a must have decoration in your home. These fine crafted pieces from Eswatini will bring life to your lounge where these can be on display for all to see.
-            These pieces do come in a set of 5 (1 vase, 4 bowls). They can have many uses as the can be used for simple decoration or practical use for food and or displaying flowers.
-        </p>
-    </div>
+    @*<div class="form-container">
+        <form action="/Product/MyWork" method="post">
+            <h2>Insert new products</h2>
+            <div class="form-group">
+                <input type="text" name="Name" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="Price" placeholder="Price" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="Availability" placeholder="Availability" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>*@
 
-    <div class="text-center">
-        <img src="~/Images/KhumaloCraftImg2.jpg" alt="" />
-        <h3>Decorative shield</h3>
-        <b><p>Price: R3999.99</p></b>
-        <p>
-            This beautiful decorative piece coming all the way from Papua New Guinea is a for sure eye-catcher. This centre piece can be displayed anywhere in your home and fit in perfectly, it
-            is a captivating shield that would have been used in the past for territorial battles but has now become a simple home decoration in modern era.
-        </p>
-    </div>
-
-    <div class="text-center">
-        <img src ="~/Images/KhumaloCraftImg3.png" alt=" " />
-        <h3>Traditional Matryoshka Dolls</h3>
-        <b><p>Price: R599.99</p></b>
-        <p>
-            A traditional Matryoshka doll from the heart of Russia, often seen for its symbolism of a mother carrying a child within her. Can be a a toy for a child to play with as well 
-            as a decorative piece. This specific one contains 7 layers, made from the Linden tree.
-        </p>
-    </div>
-
-    <div class=" text-center">
-        <img src ="~/Images/KhumaloCraftImg5.jpg" alt=" " />
-        <h3>Grand Buddha statue</h3>
-        <b><p>Price: R1199.99</p></b>
-        <p>
-            Grand Buddha statue all the way from Taiwan, this beautifully handcrafted piece is a religious icon for Budist people. It is perfectly crafted and been treated witht the upmost
-            respect and delicate hands.
-        </p>
-    </div>
 </body>
+</html>

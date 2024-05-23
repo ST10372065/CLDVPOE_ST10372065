@@ -8,6 +8,13 @@
 
 <head>
     <title>Welcome to KhumaloCraft Emporium</title>
+    <style>
+        .center-title {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to KhumaloCraft Emporium</h1>
@@ -44,5 +51,40 @@
         to homes around the world.
     </p>
 
+    <h2 class="center-title">Our Products</h2>
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Availability</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>R @product.Price</td> <!-- Add "R" before Price -->
+                    <td>@(product.Availability.ToLower() == "true" ? "Yes" : "No")</td>
+                    <td>
+                        @if (product.Availability.ToLower() == "true")
+                        {
+                            <form asp-controller="Transactions" asp-action="PlaceOrder" method="post">
+                                <input type="hidden" name="userID" value="@userID" />
+                                <input type="hidden" name="productID" value="@product" />
+                                <button type="submit">Place Order</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <button type="button" disabled>Place Order</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </body>
