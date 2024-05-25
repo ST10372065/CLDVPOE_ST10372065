@@ -9,7 +9,7 @@ namespace ST10372065.Controllers
     {
         public IActionResult Index()
         {
-            List<CartItem> cart = GetCart();
+            List<CartModel> cart = GetCart();
             return View("~/Views/Home/Cart.cshtml", cart);
         }
 
@@ -21,7 +21,7 @@ namespace ST10372065.Controllers
             var cartItem = cart.Find(item => item.ProductID == productID);
             if (cartItem == null)
             {
-                cart.Add(new CartItem { ProductID = productID, ProductName = productName, ProductPrice = productPrice, Quantity = 1 });
+                cart.Add(new CartModel { ProductID = productID, ProductName = productName, ProductPrice = (decimal)productPrice, Quantity = 1 });
             }
             else
             {
@@ -33,20 +33,20 @@ namespace ST10372065.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private List<CartItem> GetCart()
+        private List<CartModel> GetCart()
         {
             var cartJson = HttpContext.Session.GetString("Cart");
             if (cartJson == null)
             {
-                return new List<CartItem>();
+                return new List<CartModel>();
             }
             else
             {
-                return JsonConvert.DeserializeObject<List<CartItem>>(cartJson);
+                return JsonConvert.DeserializeObject<List<CartModel>>(cartJson);
             }
         }
 
-        private void SaveCart(List<CartItem> cart)
+        private void SaveCart(List<CartModel> cart)
         {
             var cartJson = JsonConvert.SerializeObject(cart);
             HttpContext.Session.SetString("Cart", cartJson);

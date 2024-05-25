@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
-@model List<ST10372065.Models.CartItem>
+@model List<ST10372065.Models.CartModel>
 
 @{
     var userID = Context.Session.GetInt32("userID");
@@ -25,7 +25,7 @@
                 <td>@item.ProductName</td>
                 <td>@item.ProductPrice</td>
                 <td>@item.Quantity</td>
-                <td>@item.TotalPrice</td>
+                <td>@(item.ProductPrice * item.Quantity)</td>
                 <td>
                     <form asp-controller="Transactions" asp-action="PlaceOrder" method="post">
                         <input type="hidden" name="userID" value="@userID" />
@@ -41,4 +41,4 @@
     </tbody>
 </table>
 
-<p><strong>Total: @Model.Sum(item => item.TotalPrice)</strong></p>
+<p><strong>Total: @Model.Sum(item => item.ProductPrice * item.Quantity)</strong></p>
