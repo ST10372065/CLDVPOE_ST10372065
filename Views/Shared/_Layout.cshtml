@@ -30,6 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ContactUS">Contact Us</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+                        </li>
                         @{
                             var userID = HttpContextAccessor.HttpContext.Session.GetString("UserID");
                             if (!string.IsNullOrEmpty(userID))
@@ -55,7 +58,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
                             </li>
-                        }
+                        }                       
                     </ul>
                 </div>
             </div>

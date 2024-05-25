@@ -23,7 +23,6 @@
     <p>
         KhumaloCraft Emporium was founded with a passion for preserving traditional craftsmanship and celebrating the beauty of handmade products.
         Our journey began in a small workshop, where our founder, Mr. John Khumalo, dedicated himself to learning and mastering various artisanal techniques passed down through generations.
-
     </p>
     <p>
         Inspired by the rich cultural heritage and diversity of craft traditions around the world, Mr. Khumalo envisioned a platform that would connect artisans with a global audience.
@@ -67,14 +66,15 @@
             {
                 <tr>
                     <td>@product.Name</td>
-                    <td>R @product.Price</td> <!-- Add "R" before Price -->
+                    <td>R @product.Price</td>
                     <td>@(product.Availability.ToLower() == "true" ? "Yes" : "No")</td>
                     <td>
                         @if (product.Availability.ToLower() == "true")
                         {
-                            <form asp-controller="Transactions" asp-action="PlaceOrder" method="post">
-                                <input type="hidden" name="userID" value="@userID" />
-                                <input type="hidden" name="productID" value="@product" />
+                            <form asp-controller="Cart" asp-action="Add" method="post">
+                                <input type="hidden" name="productID" value="@product.ProductID" />
+                                <input type="hidden" name="productName" value="@product.Name" />
+                                <input type="hidden" name="productPrice" value="@product.Price" />
                                 <button type="submit">Place Order</button>
                             </form>
                         }

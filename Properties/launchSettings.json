@@ -2,15 +2,17 @@
   "profiles": {
     "http": {
       "commandName": "Project",
+      "commandLineArgs": "set ASPNETCORE_ENVIRONMENT=Development",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONENT": "Development"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5080"
     },
     "https": {
       "commandName": "Project",
+      "commandLineArgs": "set ASPNETCORE_ENVIRONMENT=Development",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -20,6 +22,7 @@
     },
     "IIS Express": {
       "commandName": "IISExpress",
+      "commandLineArgs": "set ASPNETCORE_ENVIRONMENT=Development",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -27,11 +30,13 @@
     },
     "Container (Dockerfile)": {
       "commandName": "Docker",
+      "commandLineArgs": "set ASPNETCORE_ENVIRONMENT=Development",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
         "ASPNETCORE_HTTPS_PORTS": "8081",
-        "ASPNETCORE_HTTP_PORTS": "8080"
+        "ASPNETCORE_HTTP_PORTS": "8080",
+        "ASPNETCORE_ENVIRONENT": "Development"
       },
       "publishAllPorts": true,
       "useSSL": true

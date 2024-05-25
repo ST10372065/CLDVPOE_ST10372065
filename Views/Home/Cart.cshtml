@@ -1,0 +1,44 @@
+﻿@using Microsoft.AspNetCore.Http
+@model List<ST10372065.Models.CartItem>
+
+@{
+    var userID = Context.Session.GetInt32("userID");
+    var userName = Context.Session.GetString("userName");
+}
+
+<h2>Your Cart</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th></th> <!-- Add an extra header for the purchase button -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.ProductPrice</td>
+                <td>@item.Quantity</td>
+                <td>@item.TotalPrice</td>
+                <td>
+                    <form asp-controller="Transactions" asp-action="PlaceOrder" method="post">
+                        <input type="hidden" name="userID" value="@userID" />
+                        <input type="hidden" name="productID" value="@item.ProductID" />
+                        <input type="hidden" name="productPrice" value="@item.ProductPrice" />
+                        <input type="hidden" name="productName" value="@item.ProductName" />
+                        <input type="hidden" name="quantity" value="@item.Quantity" />
+                        <button type="submit">Proceed with purchase</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p><strong>Total: @Model.Sum(item => item.TotalPrice)</strong></p>
