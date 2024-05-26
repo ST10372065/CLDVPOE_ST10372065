@@ -62,10 +62,7 @@ namespace ST10372065.Controllers
         {
             return View();
         }
-        public IActionResult Transations()
-        {
-            return View();
-        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

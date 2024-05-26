@@ -7,46 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <style>
-        /* Basic styling for demonstration */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #fff; /* Change body background to white */
+            background-color: #fff; 
         }
 
         .form-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: calc(100vh - 60px); /* Adjust as per the height of your navbar */
+            min-height: calc(100vh - 60px);
         }
 
         form {
             background: #fff;
-            padding: 50px; /* Increase padding to make panel bigger */
+            padding: 50px;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ccc; /* Add border to form */
+            border: 1px solid #ccc; 
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .form-group {
-            margin-bottom: 20px; /* Increase space between inputs */
+            margin-bottom: 20px;
             width: 100%;
         }
 
             .form-group input[type="email"],
             .form-group input[type="password"],
             .form-group input[type="submit"] {
-                width: 100%; /* Adjust width as needed */
+                width: 100%;
                 padding: 10px;
                 box-sizing: border-box;
             }
 
             .form-group a {
-                width: 100%; /* Adjust width as needed */
+                width: 100%; 
                 padding: 10px;
                 box-sizing: border-box;
                 text-align: center;
@@ -57,7 +56,6 @@
 </head>
 <body>
 
-    <!-- Your navbar goes here -->
 
     <div class="form-container">
         <form action="/Login/Login" method="post">

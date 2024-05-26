@@ -27,8 +27,8 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('../Images/KCLogo.png');
-    background-repeat: repeat-y; /* Change this line */
-    background-position: left top; /* Adjust the position as needed */
+    background-repeat: repeat-y; 
+    background-position: left top; 
 ;
 }
 

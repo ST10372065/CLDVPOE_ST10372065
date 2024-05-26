@@ -41,10 +41,10 @@
     </tbody>
 </table>
 
-<div style="text-align: right;">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+    <p><strong>Total: @Model.Sum(item => item.ProductPrice * item.Quantity)</strong></p>
     <form asp-controller="test" asp-action="PlaceOrder" method="post">
         <button type="submit">Proceed with purchase</button>
     </form>
 </div>
 
-<p><strong>Total: @Model.Sum(item => item.ProductPrice * item.Quantity)</strong></p>

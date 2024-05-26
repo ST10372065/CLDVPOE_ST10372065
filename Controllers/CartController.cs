@@ -15,18 +15,18 @@ namespace ST10372065.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(int productID, string productName, double productPrice)
+        public IActionResult Add(int productID, string productName, double productPrice, int quantity)
         {
             var cart = GetCart();
 
             var cartItem = cart.Find(item => item.ProductID == productID);
             if (cartItem == null)
             {
-                cart.Add(new CartModel { ProductID = productID, ProductName = productName, ProductPrice = (decimal)productPrice, Quantity = 1 });
+                cart.Add(new CartModel { ProductID = productID, ProductName = productName, ProductPrice = (decimal)productPrice, Quantity = quantity });
             }
             else
             {
-                cartItem.Quantity++;
+                cartItem.Quantity += quantity;
             }
 
             SaveCart(cart);
