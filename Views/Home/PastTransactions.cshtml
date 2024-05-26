@@ -6,19 +6,27 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Cart ID</th>
-            <th>Product ID</th>
+            <th>Product Name</th>
             <th>Quantity</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var transactions in Model)
+        @if(Model.Count == 0)
         {
             <tr>
-                <td>@transactions.CartID</td>
-                <td>@transactions.ProductID</td>
-                <td>@transactions.Quantity</td>
+                <td colspan="2">No transactions found.</td>
             </tr>
         }
+        else
+        {
+            @foreach (var transactions in Model)
+            {
+                <tr>
+                    <td>@transactions.ProductName</td>
+                    <td>@transactions.Quantity</td>
+                </tr>
+            }
+        }
+        
     </tbody>
 </table>

@@ -12,6 +12,8 @@ namespace ST10372065.Models
         public int UserID { get; set; }
         public int ProductID { get; set; }
         public int Quantity { get; set; }
+        public string ProductName { get; set; }
+
 
         public static String con_String = "Server=tcp:cldvpart001-sql-server.database.windows.net,1433;Initial Catalog=cldvpart001-sql-DB;Persist Security Info=False;User ID=zack;Password=Teacupungold6;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
 
@@ -21,6 +23,7 @@ namespace ST10372065.Models
             CartID = cartID;
             ProductID = productID;
             Quantity = quantity;
+            ProductName = GetProductName(productID);
         }
         public static int processTransaction(int userID, List<CartModel> cart)
         {
@@ -90,6 +93,23 @@ namespace ST10372065.Models
             }
 
             return transactions;
+        }
+
+        private static string GetProductName(int productID)
+        {
+            string productName;
+            using (SqlConnection con = new SqlConnection(con_String))
+            {
+                string sql = "SELECT productName FROM productTable WHERE productID = @ProductID";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@ProductID", productID);
+                    con.Open();
+                    productName = Convert.ToString(cmd.ExecuteScalar());
+                    con.Close();
+                }
+            }
+            return productName;
         }
     }
 }
