@@ -15,6 +15,13 @@ namespace ST10372065.Models
 
         public static String con_String = "Server=tcp:cldvpart001-sql-server.database.windows.net,1433;Initial Catalog=cldvpart001-sql-DB;Persist Security Info=False;User ID=zack;Password=Teacupungold6;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
 
+        public TransactionsModel(int iD, int cartID, int productID,int quantity) 
+        { 
+            ID = iD;
+            CartID = cartID;
+            ProductID = productID;
+            Quantity = quantity;
+        }
         public static int processTransaction(int userID, List<CartModel> cart)
         {
             int newEntryID = 0;
@@ -67,13 +74,9 @@ namespace ST10372065.Models
                         SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
                         {
-                            TransactionsModel transaction = new TransactionsModel
-                            {
-                                ID = Convert.ToInt32(reader["ID"]),
-                                UserID = Convert.ToInt32(reader["userID"]),
-                                ProductID = Convert.ToInt32(reader["productID"]),
-                                Quantity = Convert.ToInt32(reader["quantity"])
-                            };
+                            TransactionsModel transaction = new TransactionsModel(iD : Convert.ToInt32(reader["ID"]), cartID : Convert.ToInt32(reader["cartID"]), productID : Convert.ToInt32(reader["productID"]), quantity : Convert.ToInt32(reader["quantity"]));
+                            
+                               
                             transactions.Add(transaction);
                         }
                         con.Close();

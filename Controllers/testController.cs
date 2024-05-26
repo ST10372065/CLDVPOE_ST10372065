@@ -45,43 +45,19 @@ namespace ST10372065.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Transactions()
         {
             string userIDStr = HttpContext.Session.GetString("UserID");
             int userID;
-            List<TransactionsModel> transactions = new List<TransactionsModel>();
+            List<TransactionsModel> transactions;
 
             if (!string.IsNullOrEmpty(userIDStr) && int.TryParse(userIDStr, out userID))
             {
-                try
+                transactions = TransactionsModel.GetTransactionsByUserID(userID);
+                if (transactions == null)
                 {
-                    using (SqlConnection con = new SqlConnection(con_String))
-                    {
-                        string sql = "SELECT userCartProduct.* FROM userCartProduct INNER JOIN Cart ON userCartProduct.cartID = Cart.cartID WHERE Cart.userID = @UserID";
-                        using (SqlCommand cmd = new SqlCommand(sql, con))
-                        {
-                            cmd.Parameters.AddWithValue("@UserID", userID);
-                            con.Open();
-                            SqlDataReader reader = cmd.ExecuteReader();
-                            while (reader.Read())
-                            {
-                                TransactionsModel transaction = new TransactionsModel
-                                {
-                                    ID = Convert.ToInt32(reader["ID"]),
-                                    UserID = Convert.ToInt32(reader["userID"]),
-                                    ProductID = Convert.ToInt32(reader["productID"]),
-                                    Quantity = Convert.ToInt32(reader["quantity"])
-                                };
-                                transactions.Add(transaction);
-                            }
-                            con.Close();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Handle any errors
+                    // Handle the case when no transactions are found for the user
                     return View("Error");
                 }
             }
@@ -90,8 +66,58 @@ namespace ST10372065.Controllers
                 // Handle the error when UserID is not a valid integer
                 return RedirectToAction("Login", "Home");
             }
-
-            return View(transactions);
+            return View("~/Views/Home/PastTransactions.cshtml", transactions);
+            //return View(transactions);
         }
+
+
+        //[HttpGet]
+        //public IActionResult Transactions()
+        //{
+        //    string userIDStr = HttpContext.Session.GetString("UserID");
+        //    int userID;
+        //    List<TransactionsModel> transactions = new List<TransactionsModel>();
+
+        //    if (!string.IsNullOrEmpty(userIDStr) && int.TryParse(userIDStr, out userID))
+        //    {
+        //        try
+        //        {
+        //            using (SqlConnection con = new SqlConnection(con_String))
+        //            {
+        //                string sql = "SELECT userCartProduct.* FROM userCartProduct INNER JOIN Cart ON userCartProduct.cartID = Cart.cartID WHERE Cart.userID = @UserID";
+        //                using (SqlCommand cmd = new SqlCommand(sql, con))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@UserID", userID);
+        //                    con.Open();
+        //                    SqlDataReader reader = cmd.ExecuteReader();
+        //                    while (reader.Read())
+        //                    {
+        //                        TransactionsModel transaction = new TransactionsModel
+        //                        {
+        //                            ID = Convert.ToInt32(reader["ID"]),
+        //                            UserID = Convert.ToInt32(reader["userID"]),
+        //                            ProductID = Convert.ToInt32(reader["productID"]),
+        //                            Quantity = Convert.ToInt32(reader["quantity"])
+        //                        };
+        //                        transactions.Add(transaction);
+        //                    }
+        //                    con.Close();
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            // Handle any errors
+        //            return View("Error");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // Handle the error when UserID is not a valid integer
+        //        return RedirectToAction("Login", "Home");
+        //    }
+
+        //    return View(transactions);
+        //}
     }
 }
