@@ -7,6 +7,8 @@ namespace ST10372065.Models
     public class TransactionsModel
     {
         public int TransactionID { get; set; }
+        public int CartID { get; set; }
+        public int ID { get; set; }
         public int UserID { get; set; }
         public int ProductID { get; set; }
         public int Quantity { get; set; }
@@ -47,6 +49,44 @@ namespace ST10372065.Models
             }
 
             return newEntryID;
+        }
+
+        public static List<TransactionsModel> GetTransactionsByUserID(int userID)
+        {
+            List<TransactionsModel> transactions = new List<TransactionsModel>();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(con_String))
+                {
+                    string sql = "SELECT userCartProduct.* FROM userCartProduct INNER JOIN Cart ON userCartProduct.cartID = Cart.cartID WHERE Cart.userID = @UserID";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@UserID", userID);
+                        con.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            TransactionsModel transaction = new TransactionsModel
+                            {
+                                ID = Convert.ToInt32(reader["ID"]),
+                                UserID = Convert.ToInt32(reader["userID"]),
+                                ProductID = Convert.ToInt32(reader["productID"]),
+                                Quantity = Convert.ToInt32(reader["quantity"])
+                            };
+                            transactions.Add(transaction);
+                        }
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors
+                // You might want to log the exception or throw it to be handled by a higher level method
+            }
+
+            return transactions;
         }
     }
 }

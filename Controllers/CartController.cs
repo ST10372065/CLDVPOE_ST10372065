@@ -52,5 +52,7 @@ namespace ST10372065.Controllers
             var cartJson = JsonConvert.SerializeObject(cart);
             HttpContext.Session.SetString("Cart", cartJson);
         }
+
+
     }
 }

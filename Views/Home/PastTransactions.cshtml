@@ -1,0 +1,23 @@
+﻿@model List<ST10372065.Models.TransactionsModel>
+
+<h2>Your Past Transactions</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cart ID</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transactions in Model)
+        {
+            <tr>
+                <td>@transactions.CartID</td>
+                <td>@transactions.ProductID</td>
+                <td>@transactions.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>

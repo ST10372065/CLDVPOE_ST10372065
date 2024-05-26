@@ -33,6 +33,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="PastTransactions">transactions</a>
+                        </li>
                         @{
                             var userID = HttpContextAccessor.HttpContext.Session.GetString("UserID");
                             if (!string.IsNullOrEmpty(userID))

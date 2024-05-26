@@ -22,7 +22,7 @@ namespace ST10372065.Models
             using (SqlConnection con = new SqlConnection(con_String))
             {
                 string sql = "INSERT INTO Cart (userID) OUTPUT Inserted.cartID VALUES (@UserID);";
-                string sql2 = "INSERT INTO userCartProducts (productID, quantity, cartID) VALUES (@ProductID, @Quantity, @cartID)";
+                //string sql2 = "INSERT INTO userCartProducts (productID, quantity, cartID) VALUES (@ProductID, @Quantity, @cartID)";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {

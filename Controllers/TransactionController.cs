@@ -108,41 +108,41 @@ namespace ST10372065.Controllers
             //}
         }
 
-        public IActionResult Transactions()
-        {
-            List<TransactionsModel> transactions = new List<TransactionsModel>();
+        //public IActionResult Transactions()
+        //{
+        //    List<TransactionsModel> transactions = new List<TransactionsModel>();
 
-            try
-            {
-                using (SqlConnection con = new SqlConnection(productTable.con_String))
-                {
-                    string sql = "SELECT TransactionID, userID, productID, quantity FROM transactionsTable";
-                    using (SqlCommand cmd = new SqlCommand(sql, con))
-                    {
-                        con.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            TransactionsModel transaction = new TransactionsModel
-                            {
-                                TransactionID = Convert.ToInt32(reader["TransactionID"]),
-                                UserID = Convert.ToInt32(reader["userID"]),
-                                ProductID = Convert.ToInt32(reader["productID"]),
-                                Quantity = Convert.ToInt32(reader["quantity"])
-                            };
-                            transactions.Add(transaction);
-                        }
-                        con.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle any errors
-                return View("Error");
-            }
+        //    try
+        //    {
+        //        using (SqlConnection con = new SqlConnection(productTable.con_String))
+        //        {
+        //            string sql = "SELECT TransactionID, userID, productID, quantity FROM transactionsTable";
+        //            using (SqlCommand cmd = new SqlCommand(sql, con))
+        //            {
+        //                con.Open();
+        //                SqlDataReader reader = cmd.ExecuteReader();
+        //                while (reader.Read())
+        //                {
+        //                    TransactionsModel transaction = new TransactionsModel
+        //                    {
+        //                        TransactionID = Convert.ToInt32(reader["TransactionID"]),
+        //                        UserID = Convert.ToInt32(reader["userID"]),
+        //                        ProductID = Convert.ToInt32(reader["productID"]),
+        //                        Quantity = Convert.ToInt32(reader["quantity"])
+        //                    };
+        //                    transactions.Add(transaction);
+        //                }
+        //                con.Close();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Handle any errors
+        //        return View("Error");
+        //    }
 
-            return View(transactions);
-        }
+        //    return View(transactions);
+        //}
     }
 }
