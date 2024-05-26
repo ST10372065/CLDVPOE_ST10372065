@@ -8,6 +8,17 @@
 
 <h2>Your Cart</h2>
 
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    footer {
+        margin-top: auto;
+    }
+</style>
+
 <table class="table">
     <thead>
         <tr>
@@ -15,7 +26,6 @@
             <th>Price</th>
             <th>Quantity</th>
             <th>Total Price</th>
-            <th></th> <!-- Add an extra header for the purchase button -->
         </tr>
     </thead>
     <tbody>
@@ -26,19 +36,15 @@
                 <td>@item.ProductPrice</td>
                 <td>@item.Quantity</td>
                 <td>@(item.ProductPrice * item.Quantity)</td>
-                <td>
-                    <form asp-controller="Transactions" asp-action="PlaceOrder" method="post">
-                        <input type="hidden" name="userID" value="@userID" />
-                        <input type="hidden" name="productID" value="@item.ProductID" />
-                        <input type="hidden" name="productPrice" value="@item.ProductPrice" />
-                        <input type="hidden" name="productName" value="@item.ProductName" />
-                        <input type="hidden" name="quantity" value="@item.Quantity" />
-                        <button type="submit">Proceed with purchase</button>
-                    </form>
-                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div style="text-align: right;">
+    <form asp-controller="test" asp-action="PlaceOrder" method="post">
+        <button type="submit">Proceed with purchase</button>
+    </form>
+</div>
 
 <p><strong>Total: @Model.Sum(item => item.ProductPrice * item.Quantity)</strong></p>

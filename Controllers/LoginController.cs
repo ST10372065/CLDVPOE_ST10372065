@@ -20,7 +20,7 @@ namespace ST10372065.Controllers
             if (userID != -1)
             {
                 // Store userID in session
-                HttpContext.Session.SetInt32("UserID", userID);
+                HttpContext.Session.SetString("UserID", userID.ToString());
 
                 // User found, proceed with login logic (e.g., set authentication cookie)
                 // For demonstration, redirecting to a dummy page

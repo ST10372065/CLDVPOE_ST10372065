@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using ST10372065.Models;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace ST10372065.Controllers
 {
@@ -51,6 +52,5 @@ namespace ST10372065.Controllers
             var cartJson = JsonConvert.SerializeObject(cart);
             HttpContext.Session.SetString("Cart", cartJson);
         }
-
     }
 }

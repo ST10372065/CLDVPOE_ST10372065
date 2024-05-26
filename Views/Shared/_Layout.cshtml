@@ -56,9 +56,10 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                                <span class="navbar-text">User ID: @Html.Raw(userID)</span>&nbsp;
+                                <a class="nav-link text-dark d-inline" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
                             </li>
-                        }                       
+                        }
                     </ul>
                 </div>
             </div>
