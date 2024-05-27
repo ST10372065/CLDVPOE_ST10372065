@@ -22,16 +22,16 @@
         {
             <tr>
                 <td>@item.ProductName</td>
-                <td>@item.ProductPrice</td>
+                <td>R @item.ProductPrice</td>
                 <td>@item.Quantity</td>
-                <td>@(item.ProductPrice * item.Quantity)</td>
+                <td>R @(item.ProductPrice * item.Quantity)</td>
             </tr>
         }
     </tbody>
 </table>
 
 <div style="display: flex; justify-content: space-between; align-items: center;">
-    <p><strong>Total: @Model.Sum(item => item.ProductPrice * item.Quantity)</strong></p>
+    <p><strong>Total:R @Model.Sum(item => item.ProductPrice * item.Quantity)</strong></p>
     <div style="display: flex; flex-direction: column;">
         <form asp-controller="test" asp-action="PlaceOrder" method="post" style="margin-bottom: 10px;">
             <button type="submit" style="background-color: green; color: white;">Proceed with purchase</button>
