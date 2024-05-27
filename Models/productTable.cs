@@ -9,16 +9,17 @@ namespace ST10372065.Models
         public static SqlConnection con = new SqlConnection(con_String);
 
         public int ProductID { get; set; }
-
         public string Name { get; set; }
-
         public string Price { get; set; }
-
         public string Availability { get; set; }
-
+        /// <summary>
+        /// method to insert a product into the database
+        /// provided in assignment
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public int insert_product(productTable product)
         {
-
             try
             {
                 string sql = "INSERT INTO productTable (productName, productPrice, productAvailability) VALUES (@Name, @Price, @Availability)";

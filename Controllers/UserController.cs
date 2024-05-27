@@ -12,7 +12,12 @@ namespace ST10372065.Controllers
         {
             userTable = new userTable();
         }
-
+        /// <summary>
+        /// Sign up a new user
+        /// provided in assignment
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult SignUp(userTable user)
         {

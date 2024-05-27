@@ -11,7 +11,13 @@ namespace ST10372065.Controllers
         {
             login = new LoginModel();
         }
-
+        /// <summary>
+        /// ensures that the user exists in the database.
+        /// Provided in assignment
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Login(string email, string password)
         {

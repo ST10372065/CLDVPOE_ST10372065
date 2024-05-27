@@ -9,12 +9,20 @@ namespace ST10372065.Controllers
         public productTable prodtbl = new productTable();
 
         private readonly IHttpContextAccessor _httpContextAccessor;
-
+        /// <summary>
+        /// set the httpContextAccessor for the session
+        /// </summary>
+        /// <param name="httpContextAccessor"></param>
         public ProductController(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
         }
-
+        /// <summary>
+        /// Inserts the products into the database
+        /// provided in assignment
+        /// </summary>
+        /// <param name="products"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult MyWork(productTable products)
         {
@@ -28,7 +36,11 @@ namespace ST10372065.Controllers
             var result2 = prodtbl.insert_product(products);
             return RedirectToAction("Index", "Home");
         }
-
+        /// <summary>
+        /// displays the products in the database
+        /// provided in assignment
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult MyWork()
         {

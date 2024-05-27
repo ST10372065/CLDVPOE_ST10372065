@@ -9,7 +9,10 @@ namespace ST10372065.Controllers
     public class testController : Controller
     {
         public static string con_String = "Server=tcp:cldvpart001-sql-server.database.windows.net,1433;Initial Catalog=cldvpart001-sql-DB;Persist Security Info=False;User ID=zack;Password=Teacupungold6;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
-
+        /// <summary>
+        /// gets products in cart list
+        /// </summary>
+        /// <returns></returns>
         private List<CartModel> GetCart()
         {
             var cartJson = HttpContext.Session.GetString("Cart");
@@ -27,7 +30,10 @@ namespace ST10372065.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// takes usersID and adds product to cart
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult PlaceOrder()
         {
@@ -47,7 +53,10 @@ namespace ST10372065.Controllers
         }
 
 
-
+        /// <summary>
+        /// gets the users transactions from the database
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Transactions()
         {
@@ -67,7 +76,10 @@ namespace ST10372065.Controllers
             return View("~/Views/Home/PastTransactions.cshtml", transactions);
             //return View(transactions);
         }
-
+        /// <summary>
+        /// clears the cart for the user
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult ClearCart()
         {

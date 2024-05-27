@@ -14,7 +14,14 @@ namespace ST10372065.Models
         public int Quantity { get; set; }
 
         public static String con_String = "Server=tcp:cldvpart001-sql-server.database.windows.net,1433;Initial Catalog=cldvpart001-sql-DB;Persist Security Info=False;User ID=zack;Password=Teacupungold6;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
-
+        /// <summary>
+        /// uses an SQL connection to add a product to the cart. The SQL command is to INSERT into the datbase.
+        /// https://www.w3schools.com/sql/sql_insert.asp
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="productID"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
         public static int AddToCart(int userID, int productID, int quantity)
         {
             int newEntryID = 0;
@@ -22,16 +29,11 @@ namespace ST10372065.Models
             using (SqlConnection con = new SqlConnection(con_String))
             {
                 string sql = "INSERT INTO Cart (userID) OUTPUT Inserted.cartID VALUES (@UserID);";
-                //string sql2 = "INSERT INTO userCartProducts (productID, quantity, cartID) VALUES (@ProductID, @Quantity, @cartID)";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     
                     var cartID = cmd.ExecuteNonQueryAsync();
-                    //cmd.Parameters.AddWithValue("@UserID", userID);
-                    //cmd.Parameters.AddWithValue("@ProductID", productID);
-                    //cmd.Parameters.AddWithValue("@Quantity", quantity);
-
                     con.Open();
                     newEntryID = Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -39,56 +41,5 @@ namespace ST10372065.Models
 
             return newEntryID;
         }
-
-        //public static List<CartModel> GetCartItems(int userID)
-        //{
-        //    List<CartModel> cartItems = new List<CartModel>();
-
-        //    using (SqlConnection con = new SqlConnection(con_String))
-        //    {
-        //        string sql = "SELECT Cart.productID, productTable.Name AS productName, productTable.Price AS productPrice, Cart.quantity " +
-        //                     "FROM Cart " +
-        //                     "JOIN productTable ON Cart.productID = productTable.ID " +
-        //                     "WHERE Cart.userID = @UserID";
-
-        //        using (SqlCommand cmd = new SqlCommand(sql, con))
-        //        {
-        //            cmd.Parameters.AddWithValue("@UserID", userID);
-
-        //            con.Open();
-        //            SqlDataReader reader = cmd.ExecuteReader();
-        //            while (reader.Read())
-        //            {
-        //                CartModel item = new CartModel
-        //                {
-        //                    ProductID = Convert.ToInt32(reader["productID"]),
-        //                    ProductName = reader["productName"].ToString(),
-        //                    ProductPrice = Convert.ToDecimal(reader["productPrice"]),
-        //                    Quantity = Convert.ToInt32(reader["quantity"])
-        //                };
-        //                cartItems.Add(item);
-        //            }
-        //        }
-        //    }
-
-        //    return cartItems;
-        //}
-
-        //public static void ClearCart(int userID)
-        //{
-        //    using (SqlConnection con = new SqlConnection(con_String))
-        //    {
-        //        string sql = "DELETE FROM Cart WHERE userID = @UserID";
-
-        //        using (SqlCommand cmd = new SqlCommand(sql, con))
-        //        {
-        //            cmd.Parameters.AddWithValue("@UserID", userID);
-
-
-        //            con.Open();
-        //            cmd.ExecuteNonQuery();
-        //        }
-        //    }
-        //}
     }
 }

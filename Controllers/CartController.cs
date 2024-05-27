@@ -8,12 +8,24 @@ namespace ST10372065.Controllers
 {
     public class CartController : Controller
     {
+        /// <summary>
+        /// create a cart list
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             List<CartModel> cart = GetCart();
             return View("~/Views/Home/Cart.cshtml", cart);
         }
-
+        /// <summary>
+        /// Handles the logic for adding items to a shopping cart.Checks if the item already exists in the cart and either adds a new item or increments the quantity of an existing item. 
+        /// The updated cart is then saved and the user is redirected to the cart's index page.
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <param name="productName"></param>
+        /// <param name="productPrice"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Add(int productID, string productName, double productPrice, int quantity)
         {
@@ -33,7 +45,10 @@ namespace ST10372065.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-
+        /// <summary>
+        /// Gets the cart from the session and returns it as a list of CartModel objects.
+        /// </summary>
+        /// <returns></returns>
         private List<CartModel> GetCart()
         {
             var cartJson = HttpContext.Session.GetString("Cart");

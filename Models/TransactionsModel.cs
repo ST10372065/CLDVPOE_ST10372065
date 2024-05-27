@@ -25,6 +25,12 @@ namespace ST10372065.Models
             Quantity = quantity;
             ProductName = GetProductName(productID);
         }
+        /// <summary>
+        /// Inserts a new row into the Cart table to create a new transaction entry. Retrieves the inserted cartID, and then inserts the items from the user's cart into the userCartProduct table
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <param name="cart"></param>
+        /// <returns></returns>
         public static int processTransaction(int userID, List<CartModel> cart)
         {
             int newEntryID = 0;
@@ -60,7 +66,11 @@ namespace ST10372065.Models
 
             return newEntryID;
         }
-
+        /// <summary>
+        /// gets the user's transactions by their userID
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static List<TransactionsModel> GetTransactionsByUserID(int userID)
         {
             List<TransactionsModel> transactions = new List<TransactionsModel>();
@@ -95,7 +105,11 @@ namespace ST10372065.Models
 
             return transactions;
         }
-
+        /// <summary>
+        /// gets the product name by the productID
+        /// </summary>
+        /// <param name="productID"></param>
+        /// <returns></returns>
         private static string GetProductName(int productID)
         {
             string productName;

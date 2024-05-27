@@ -22,7 +22,10 @@ namespace ST10372065.Models
             ProductPrice = price;
             ProductAvailability = availability;
         }
-
+        /// <summary>
+        /// used to select all products from the database
+        /// </summary>
+        /// <returns></returns>
         public static List<productDisplayModel> SelectProducts()
         {
             List<productDisplayModel> products = new List<productDisplayModel>();
