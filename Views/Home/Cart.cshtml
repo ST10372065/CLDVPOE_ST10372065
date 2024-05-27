@@ -8,17 +8,6 @@
 
 <h2>Your Cart</h2>
 
-<style>
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-    footer {
-        margin-top: auto;
-    }
-</style>
-
 <table class="table">
     <thead>
         <tr>
@@ -41,12 +30,20 @@
     </tbody>
 </table>
 
-<div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+<div style="display: flex; justify-content: space-between; align-items: center;">
     <p><strong>Total: @Model.Sum(item => item.ProductPrice * item.Quantity)</strong></p>
-    <form asp-controller="test" asp-action="PlaceOrder" method="post">
-        <button type="submit">Proceed with purchase</button>
-    </form>
-    <form asp-controller="test" asp-action="Transactions" method="post">
-        <button type="submit">Load All Previous Transactions</button>
-    </form>
+    <div style="display: flex; flex-direction: column;">
+        <form asp-controller="test" asp-action="PlaceOrder" method="post" style="margin-bottom: 10px;">
+            <button type="submit" style="background-color: green; color: white;">Proceed with purchase</button>
+        </form>
+        <form asp-controller="test" asp-action="Transactions" method="post">
+            <button type="submit" style="background-color: blue; color: white;">Load All Previous Transactions</button>
+        </form>
+        @if (Model.Any())
+        {
+            <form asp-controller="test" asp-action="ClearCart" method="post" style="margin-top: 10px;">
+                <button type="submit" style="background-color: red; color: white;">Clear Cart</button>
+            </form>
+        }
+    </div>
 </div>

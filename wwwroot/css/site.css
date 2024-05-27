@@ -27,15 +27,18 @@ body {
     margin: 0;
     padding: 0;
     background-image: url('../Images/KCLogo.png');
-    background-repeat: repeat-y; 
-    background-position: left top; 
-;
+    background-repeat: repeat-y;
+    background-position: left top;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 footer {
     background-color: aliceblue;
     text-align: center;
-    height: 15px;
+    height: 30px;
     width: 100%;
+    margin-top: auto;
 }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using ST10372065.Models;
 using System.Data.SqlClient;
@@ -45,6 +46,8 @@ namespace ST10372065.Controllers
             }
         }
 
+
+
         [HttpPost]
         public IActionResult Transactions()
         {
@@ -63,6 +66,27 @@ namespace ST10372065.Controllers
             }
             return View("~/Views/Home/PastTransactions.cshtml", transactions);
             //return View(transactions);
+        }
+
+        [HttpPost]
+        public IActionResult ClearCart()
+        {
+            string userIDStr = HttpContext.Session.GetString("UserID");
+            int userID;
+
+            if (!string.IsNullOrEmpty(userIDStr) && int.TryParse(userIDStr, out userID))
+            {
+                var emptyCart = new List<CartModel>();
+                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(emptyCart));
+            }
+            else
+            {
+                // If UserID is not a valid integer or is not present in the session, redirect to the Login view
+                return RedirectToAction("Login", "Home");
+            }
+
+         
+            return RedirectToAction("Index", "Home");
         }
     }
 }
